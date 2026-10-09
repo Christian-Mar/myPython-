@@ -1,8 +1,17 @@
 class Student:
     def __init__(self, naam, punten): # initialiseert de values van de student
         # Hier zit de controle over de input
-        self.naam = naam 
+        if not isinstance(punten, (int, float)) or punten < 0:
+            raise ValueError(f"punten moet een getal van 0 of hoger zijn, kreeg: {punten!r}")
+        self.naam = naam
         self.punten = punten
+
+    def geslaagd(self):
+        return self.punten >= 50
+
+    def __str__(self):
+        status = "geslaagd" if self.geslaagd() else "niet geslaagd"
+        return f"{self.naam}: {self.punten} punten ({status})"
 
     def toon(self):
         print(f"Student: {self.naam}")
@@ -13,14 +22,19 @@ class Student:
         self.punten += extra
 
 
-student1 = Student("Anna", 70)
+student1 = Student("Anna", 20)
 # student2 = Student("Bram", 'veel')
-student2 = Student("Bram", 30)
+student2 = Student("Bram", 70)
 
 student2.verhoog_punten(10)
 
 student1.toon()
 student2.toon()
 
+print(student1)
+print(student2)
+print(student1.geslaagd())
+
 # De fout zit ingesloten in de klasse (incapsulation) 
-# Bijvoorbeeld Student("Bram", "veel") -> student is corrupt, maar de rest van het programma blijft werken
+# Lijn 4 -> Een dict kun je nergens afdwingen; een klasse is de plek waar afdwingen mogelijk wordt.
+# Crash gebeurt bij het aanmaken - bijvoorbeeld 'veel' punten - en niet in één van de volgende functies
