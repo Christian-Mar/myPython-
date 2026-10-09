@@ -9,7 +9,7 @@ class Student:
     def geslaagd(self):
         return self.punten >= 50
 
-    def __str__(self):
+    def __str__(self): # geeft gewoon een string terug, print zelf niet
         status = "geslaagd" if self.geslaagd() else "niet geslaagd"
         return f"{self.naam}: {self.punten} punten ({status})"
 
