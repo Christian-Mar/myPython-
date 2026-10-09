@@ -12,10 +12,13 @@ def verhoog_punten(student, extra):
     student["punten"] += extra
 
 
-student1 = maak_student("Anna", 70) # student in variabele steken
-student2 = maak_student("Bram", 55)
+student1 = maak_student("Anna", 10) # student in variabele steken
+# student2 = maak_student("Bram", 'veel')
+student2 = maak_student("Bram", 20)
 
 verhoog_punten(student2, 10) # student bewerken met functie
 
 toon_student(student1) # student ophalen 
 toon_student(student2)
+
+# Foutbron ligt bij de gebruiker: neemt hij de verkeerde dict en de functie kan er niets mee doen dan crasht het.
